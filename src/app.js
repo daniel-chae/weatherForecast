@@ -5,6 +5,7 @@ const forecast = require("./utils/forecast");
 const geocode = require("./utils/geocode");
 
 const app = express(); // create express app
+const port = process.env.PORT || 3000;
 
 // Define paths for Express config
 const publicDirectoryPath = path.join(__dirname, "../public"); //__dirname, __filename provided by node to the current file/folder path
@@ -19,7 +20,8 @@ hbs.registerPartials(partialsPath); //register partials to be used for hbs
 // Setup static directory to serve
 app.use(express.static(publicDirectoryPath)); //all files in public directory is usable
 
-app.get("", (req, res) => { //for root route, render index.hbs from specified view path
+app.get("", (req, res) => {
+  //for root route, render index.hbs from specified view path
   res.render("index", {
     title: "Weather",
     name: "Daniel"
@@ -98,6 +100,6 @@ app.get("*", (req, res) => {
   });
 });
 
-app.listen(3000, () => {
-  console.log("Server is up on port 3000.");
+app.listen(port, () => {
+  console.log(`Server is up on port ${port}`);
 });
