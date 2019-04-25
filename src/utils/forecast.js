@@ -12,9 +12,10 @@ const forecast = (latitude, longtitude, callback) => {
         responseBody.daily.data[0].summary
       }. It is currently ${
         responseBody.currently.temperature
-      } degrees out. There is a ${
+      } degrees out and humidity is ${responseBody.currently.humidity *
+        100}%. There is a ${
         responseBody.currently.precipProbability
-      }% chance of rain`;
+      }% chance of rain.`;
       callback(undefined, forecast);
     }
   });
